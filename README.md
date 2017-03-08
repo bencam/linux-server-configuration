@@ -1,7 +1,7 @@
 # Linux Server Configuration
 Instructions on how to set up a Ubuntu Linux server to host a simple web application built with Flask.
 
-The instructions are written specifically for hosting an app called (Nuevo M&eacute;xico)[https://github.com/bencam/nuevo-mexico] on an Amazon Lightsail instance but can easily be adapted to work for an alternative application and/or server provider.
+The instructions are written specifically for hosting an app called [Nuevo M&eacute;xico](https://github.com/bencam/nuevo-mexico) on an Amazon Lightsail instance but can easily be adapted to work for an alternative application and/or server provider.
 
 
 ## 1. Details specific to the server I set up
@@ -30,7 +30,7 @@ The URL to the hosted webpage is simply the public IP address: ADD.
 
 ## 3. Configuration steps
 ### Create an instance with Amazon Lightsail
-1. Sign in to (Amazon Lightsail)[https://amazonlightsail.com] using an Amazon Web Services account
+1. Sign in to [Amazon Lightsail](https://amazonlightsail.com) using an Amazon Web Services account
 
 1. Follow the 'Create an instance' link
 
