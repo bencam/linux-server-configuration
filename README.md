@@ -1,5 +1,5 @@
 # Linux Server Configuration
-Instructions on how to set up a Ubuntu Linux server to host a simple web application built with Flask.
+This is a set of instructions on how to set up a Ubuntu Linux server to host a simple web application built with Flask.
 
 The instructions are written specifically for hosting an app called [Nuevo M&eacute;xico](https://github.com/bencam/nuevo-mexico) on an Amazon Lightsail instance but can easily be adapted to work for an alternative application and/or server provider.
 
@@ -41,4 +41,22 @@ The URL to the hosted webpage is simply the public IP address: ADD.
 1. Give the instance a unique name and click 'Create'
 
 1. Wait for the instance to start up
+
+
+### Connect to the instance on a local machine
+Note: While Amazon Lightsail provides a broswer-based connection method, this will no longer work once the SSH port is changed (see below). The following steps outline how to connect to the instance via the Terminal program on Mac OS machines (this can also be done on a Windows machine with a program such as PuTTY).
+
+1. Download the instance's private key by navigating to the Amazon Lightsail 'Account page'
+
+1. Click on 'Download default key'
+
+1. A file called LightsailDefaultPrivateKey.pem will be downloaded; open this in a text editor
+
+1. Copy the text and put it in a file called lightrail_key.rsa in the local ~/.ssh/ directory
+
+1. Run `chmod 600 ~/.ssh/lightrail_key.rsa`
+
+1. Log in with the following command: `ssh -i ~/.ssh/lightrail_key.rsa ubuntu@XX.XX.XX.XX`, where XX.XX.XX.XX is the public IP address of the instance (note that Lightsail will not allow someone to log in as `root`; `ubuntu` is the default user for Lightsail instances)
+
+
 
