@@ -88,7 +88,8 @@ Note: While Amazon Lightsail provides a broswer-based connection method, this wi
 
 1. Run `sudo ufw status` to check which ports are open and to see if the ufw is active; if done correctly, it should look like this:
 
-`To                         Action      From
+```
+To                         Action      From
 --                         ------      ----
 22                         DENY        Anywhere
 2200/tcp                   ALLOW       Anywhere
@@ -97,7 +98,8 @@ Note: While Amazon Lightsail provides a broswer-based connection method, this wi
 22 (v6)                    DENY        Anywhere (v6)
 2200/tcp (v6)              ALLOW       Anywhere (v6)
 80/tcp (v6)                ALLOW       Anywhere (v6)
-123/udp (v6)               ALLOW       Anywhere (v6)`
+123/udp (v6)               ALLOW       Anywhere (v6)
+```
 
 1. Update the external (Amazon Lightsail) firewall on the browser by clicking on the 'Networking' tab and changing the firewall configuration to match the internal firewall settings above (only ports `80`, `123`, and `2200` should be allowed; make sure to deny the default port `22`)
 
