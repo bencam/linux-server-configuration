@@ -88,24 +88,24 @@ Note: While Amazon Lightsail provides a broswer-based connection method, this wi
 
 1. Run `sudo ufw status` to check which ports are open and to see if the ufw is active; if done correctly, it should look like this:
 
-```
-To                         Action      From
---                         ------      ----
-22                         DENY        Anywhere
-2200/tcp                   ALLOW       Anywhere
-80/tcp                     ALLOW       Anywhere
-123/udp                    ALLOW       Anywhere
-22 (v6)                    DENY        Anywhere (v6)
-2200/tcp (v6)              ALLOW       Anywhere (v6)
-80/tcp (v6)                ALLOW       Anywhere (v6)
-123/udp (v6)               ALLOW       Anywhere (v6)
-```
+	```
+	To                         Action      From
+	--                         ------      ----
+	22                         DENY        Anywhere
+	2200/tcp                   ALLOW       Anywhere
+	80/tcp                     ALLOW       Anywhere
+	123/udp                    ALLOW       Anywhere
+	22 (v6)                    DENY        Anywhere (v6)
+	2200/tcp (v6)              ALLOW       Anywhere (v6)
+	80/tcp (v6)                ALLOW       Anywhere (v6)
+	123/udp (v6)               ALLOW       Anywhere (v6)
+	```
 
-12. Update the external (Amazon Lightsail) firewall on the browser by clicking on the 'Networking' tab and changing the firewall configuration to match the internal firewall settings above (only ports `80`, `123`, and `2200` should be allowed; make sure to deny the default port `22`)
+1. Update the external (Amazon Lightsail) firewall on the browser by clicking on the 'Networking' tab and changing the firewall configuration to match the internal firewall settings above (only ports `80`, `123`, and `2200` should be allowed; make sure to deny the default port `22`)
 
-13. Now, to login (on a Mac), open up the Terminal and run:
+1. Now, to login (on a Mac), open up the Terminal and run:
 
-`ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@XX.XX.XX.XX`, where XX.XX.XX.XX is the public IP address of the instance
+	`ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@XX.XX.XX.XX`, where XX.XX.XX.XX is the public IP address of the instance
 
 Note: As mentioned above, connecting to the instance through a browser now no longer works; this is because Lightsail's browser-based SSH access only works through port `22`, which is now denied.
 
@@ -125,24 +125,24 @@ Note: As mentioned above, connecting to the instance through a browser now no lo
 
 1. Search for a line that looks like this:
 
-`root    ALL=(ALL:ALL) ALL`
+	`root    ALL=(ALL:ALL) ALL`
 
 1. Add the following line below this one:
 
-`grader	   ALL=(ALL:ALL) ALL`
+	`grader	   ALL=(ALL:ALL) ALL`
 
 1. Save and close the visudo file
 
 1. To verify that `grader` has sudo permissions, `su` as `grader` (run `su - grader`), enter the password, and run `sudo -l`; after entering in the password (again), a line like the following should appear, meaning `grader` has sudo permissions:
 
-```
-Matching Defaults entries for grader on
-    ip-XX-XX-XX-XX.ec2.internal:
-    env_reset, mail_badpass,
-    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+	```
+	Matching Defaults entries for grader on
+	    ip-XX-XX-XX-XX.ec2.internal:
+	    env_reset, mail_badpass,
+	    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
 
-User grader may run the following commands on
-        ip-XX-XX-XX-XX.ec2.internal:
-    (ALL : ALL) ALL
-```
+	User grader may run the following commands on
+		ip-XX-XX-XX-XX.ec2.internal:
+	    (ALL : ALL) ALL
+	```
 
