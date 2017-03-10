@@ -146,3 +146,38 @@ Note: As mentioned above, connecting to the instance through a browser now no lo
 	    (ALL : ALL) ALL
 	```
 
+
+### Allow `grader` to log in to the virtual machine
+1. Run `ssh-keygen` on the local machine
+
+1. Choose a file name for the key pair (such as grader_key)
+
+1. Enter in a passphrase twice (two files will be generated; the second one will end in .pub)
+
+1. Log in to the virtual machine
+
+1. Switch to `grader`'s home directory, and create a new directory called `.ssh` (run `mkdir .ssh`)
+
+1. Run `touch .ssh/authorized_keys`
+
+1. On the local machine, run 'cat ~/.ssh/insert-name-of-file.pub`
+
+1. Copy the contents of the file, and paste them in the .ssh/authorized_keys file on the virtual machine
+
+1. Run `chmod 700 .ssh` on the virtual machine
+
+1. Run `chmod 644 .ssh/authorized_keys` on the virtual machine
+
+1. Make sure key-based authentication is forced (log in as `grader`, open the `/etc/ssh/sshd_config` file, and find the line that says, '# Change to no to disable tunnelled clear text passwords'; if the next line says, 'PasswordAuthentication yes', change the 'yes' to 'no'; save and exit the file; run `sudo service ssh restart`)
+
+1. Log in as the grader using the following command:
+
+	`ssh -i ~/.ssh/grader_key -p 2200 grader@XX.XX.XX.XX`
+
+Note that a pop-up window will ask for `grader`'s password.
+
+
+### Configure the local timezone to UTC
+Run `sudo dpkg-reconfigure tzdata`, and follow the instructions (UTC is under the 'None of the above' category)
+
+
