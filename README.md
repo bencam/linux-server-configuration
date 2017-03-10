@@ -187,7 +187,7 @@ Run `sudo dpkg-reconfigure tzdata`, and follow the instructions (UTC is under th
 1. Check to make sure it worked by using the public IP of the Amazon Lightsail instance as as a URL in a browser; if Apache is working correctly, a page with the title 'Apache2 Ubuntu Default Page' should load
 
 
-## Install mod_wsgi
+### Install mod_wsgi
 1. Install the mod_wsgi package (which is a tool that allows Apache to serve Flask applications) along with python-dev (a package with header files required when building Python extensions); use the following command:
 
 `sudo apt-get install libapache2-mod-wsgi python-dev`
@@ -218,5 +218,57 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 	Type "help", "copyright", "credits" or "license" for more information.
 	>>>
 	```
+
+### Create a new PostgreSQL user named `catalog` with limited permissions
+1. PostgreSQL creates a Linux user with the name `postgres` during installation; switch to this user by running `sudo su - postgres` (for security reasons, it is important to only use the `postgres` user for accessing the PostgreSQL software)
+
+1. Connect to psql (the terminal for interacting with PostgreSQL) by running `psql`
+
+1. Create the `catalog` user by running `CREATE ROLE catalog WITH LOGIN;`
+
+1. Next, give the `catalog` user the ability to create databases: `ALTER ROLE catalog CREATEDB;`
+
+1. Finally, give the `catalog` user a password by running `\password catalog`
+
+1. Check to make sure the `catalog` user was created by running `\du`; a table of sorts will be returned, and it should look like this:
+
+	```							  List of roles
+	 Role name |                   Attributes                   | Member of 
+	-----------+------------------------------------------------+-----------
+	 catalog   | Create DB                                      | {}
+	 postgres  | Superuser, Create role, Create DB, Replication | {}
+	```
+
+1. Exit psql by running `\q`
+
+1. Switch back to the `ubuntu` user by running `exit`
+
+
+### Create a Linux user called catalog and a new PostgreSQL database
+1. Create a new Linux user called `catalog`:
+
+	- run `sudo adduser catalog`
+	- enter in a new UNIX password (twice) when prompted
+	- fill out information for `catalog`
+
+1. Give the `catalog` user sudo permissions:
+    
+	- run `visudo`
+	- search for a line that looks like this: `root    ALL=(ALL:ALL) ALL`
+	- add the following line below this one: `catalog    ALL=(ALL:ALL) ALL`
+	- save and close the visudo file
+	- to verify that `catalog` has sudo permissions, `su` as `catalog` (run `sudo su - catalog`), and run `sudo -l`
+	- after entering in the UNIX password, a line like the following should appear (meaning `catalog` has sudo permissions):
+
+		```
+		User catalog may run the following commands on
+			ip-172-26-12-117.ec2.internal:
+		    (ALL : ALL) ALL
+		```
+
+1. While logged in as `catalog`, create a database called catalog by running `createdb catalog`
+
+1. Run `psql` and then run `\l` to see that the new database has been created
+
 
 
