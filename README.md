@@ -232,11 +232,12 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 1. Check to make sure the `catalog` user was created by running `\du`; a table of sorts will be returned, and it should look like this:
 
-	```							  List of roles
-	 Role name |                   Attributes                   | Member of 
-	-----------+------------------------------------------------+-----------
-	 catalog   | Create DB                                      | {}
-	 postgres  | Superuser, Create role, Create DB, Replication | {}
+	```
+					   List of roles
+	 Role name |                         Attributes                         | Member of 
+	-----------+------------------------------------------------------------+-----------
+	 catalog   | Create DB                                                  | {}
+	 postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 	```
 
 1. Exit psql by running `\q`
