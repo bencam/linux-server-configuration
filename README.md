@@ -12,7 +12,7 @@ The SSH port used is `ADD`.
 The URL to the hosted webpage is simply the public IP address: ADD.
 
 
-## 2. Software installed during configuration
+## 2. Software to install during the configuration
 - Apache2
 - mod_wsgi
 - PostgreSQL
@@ -179,5 +179,44 @@ Note that a pop-up window will ask for `grader`'s password.
 
 ### Configure the local timezone to UTC
 Run `sudo dpkg-reconfigure tzdata`, and follow the instructions (UTC is under the 'None of the above' category)
+
+
+### Install and configure Apache
+1. Run `sudo apt-get install apache2` to install Apache
+
+1. Check to make sure it worked by using the public IP of the Amazon Lightsail instance as as a URL in a browser; if Apache is working correctly, a page with the title 'Apache2 Ubuntu Default Page' should load
+
+
+## Install mod_wsgi
+1. Install the mod_wsgi package (which is a tool that allows Apache to serve Flask applications) along with python-dev (a package with header files required when building Python extensions); use the following command:
+
+`sudo apt-get install libapache2-mod-wsgi python-dev`
+
+1. Make sure mod_wsgi is enabled by running `sudo a2enmod wsgi`
+
+
+### Install PostgreSQL and make sure PostgreSQL is not allowing remote connections
+1. Install PostgreSQL by running `sudo apt-get install postgresql`
+
+1. Open the /etc/postgresql/9.5/main/pg_hba.conf file
+
+1. Make sure it looks like this (comments have been removed here for easier reading):
+
+	```
+	local   all             postgres                                peer
+	local   all             all                                     peer
+	host    all             all             127.0.0.1/32            md5
+	host    all             all             ::1/128                 md5
+	```
+
+### Make sure Python is installed
+Python should already be installed on a machine running Ubuntu 16.04. To verify, simply run `python`. Something like the following should appear:
+
+	```
+	Python 2.7.6 (default, Oct 26 2016, 20:30:19) 
+	[GCC 4.8.4] on linux2
+	Type "help", "copyright", "credits" or "license" for more information.
+	>>>
+	```
 
 
