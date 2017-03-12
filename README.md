@@ -263,13 +263,39 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 		```
 		User catalog may run the following commands on
-			ip-172-26-12-117.ec2.internal:
+			ip-XX-XX-XX-XX.ec2.internal:
 		    (ALL : ALL) ALL
 		```
 
 1. While logged in as `catalog`, create a database called catalog by running `createdb catalog`
 
 1. Run `psql` and then run `\l` to see that the new database has been created
+
+
+### Install git and clone the catalog project
+1. Run `sudo apt-get install git-all`
+
+1. Create a directory called `nuevoMexico` in the /var/www/ directory
+
+1. Change to the `nuevoMexico` directory, and clone the catalog project:
+
+	`sudo git clone https://github.com/bencam/nuevo-mexico.git nuevoMexico`
+
+	Note: the "nuevoMexico" part at the end simply changes the directory name for the repository to 'nuevoMexico' instead of the default 'nuevo-mexico'; this avoids problems later on as Apache does not like hyphens very much
+
+1. Change the name of the application.py file to __init__.py by running `sudo mv application.py __init__.py`
+
+1. In __init__.py, find line 508:
+
+	`app.run(host='0.0.0.0', port=8000)`
+
+	Change this line to:
+
+	`app.run()`
+
+1. Open the database_setup.py file, and change the 'description' column character limit (line 46) from `250` to `850` (some of the place descriptions in the app are relatively long); to be clear, the line should look as follows (after it is changed):
+
+	`description = Column(String(850))`
 
 
 
