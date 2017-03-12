@@ -298,4 +298,40 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 	`description = Column(String(850))`
 
 
+### Add client_secrets.json and fb_client_secrets.json files
+1. Authenticate login through Google:
+
+	- Create a new project on the [Google API Console](console.developers.google.com)
+
+	- Create an OAuth Client ID (under the Credentials tab), and make sure to add http://XX.XX.XX.XX and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com as authorized JavaScript origins
+
+	- Add http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/login, http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/gconnect, and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/oauth2callback as authorized redirect URIs
+
+	- Create a file called client_secrets.json file in the /var/www/nuevoMexico/nuevoMexico/ directory 
+
+	- Google will provide a client ID and client secret for the project; download the JSON file, and copy and paste the contents into the client_secrets.json file
+
+	- Add the client ID to line 16 of the templates/login.html file in the project directory
+
+	- Add the complete file path for the client_secrets.json file in lines 33 and 63 in the __init__.py file; change it from 'client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/client_secrets.json'
+
+1. Authenitcate login through Facebook:
+
+	- Create a new app at [Facebook for Developers](https://developers.facebook.com)
+
+	- Make http://XX.XX.XX.XX/ the site URL
+
+	- Add the 'Facebook Login' product, and put http://XX.XX.XX.XX/ and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/ as the Valid OAuth redirect URIs
+
+	- Create a file called fb_client_secrets.json file in the /var/www/nuevoMexico/nuevoMexico/ directory
+
+	- Paste the following into the fb_client_secrets.json file:
+
+		`{ "web": { "app_id": "INSERT_APP_ID", "app_secret": "INSERT_APP_SECRET" } }`
+
+	- Add the Facebook App ID to line 61 of the templates/login.html file in the project directory
+
+	- Add the complete file path for the fb_client_secrets.json file in lines 185 and 187 in the __init__.py file; change it from 'fb_client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/fb_client_secrets.json'
+
+
 
