@@ -409,7 +409,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 	</VirtualHost>
 	```
 
-Note: the `Options -Indexes` lines ensure that listings for these directories in the browser has been disabled.
+	Note: the `Options -Indexes` lines ensure that listings for these directories in the browser has been disabled.
 
 1. Run `sudo a2ensite nuevoMexico` to enable the virtual host
 
