@@ -382,5 +382,36 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 1. Deactivate the virtual environment by running `deactivate`
 
 
+### Set up and enable a virtual host
+1. Create a file in /etc/apache2/sites-available/ called nuevoMexico.conf
+
+1. Add the following into the file:
+
+	```
+	<VirtualHost *:80>
+			ServerName 184.73.140.177
+			ServerAdmin ben.in.campbell@gmail.com
+			WSGIScriptAlias / /var/www/nuevoMexico/nuevoMexico.wsgi
+			<Directory /var/www/nuevoMexico/nuevoMexico/>
+				Order allow,deny
+				Allow from all
+				Options -Indexes
+			</Directory>
+			Alias /static /var/www/nuevoMexico/nuevoMexico/static
+			<Directory /var/www/nuevoMexico/nuevoMexico/static/>
+				Order allow,deny
+				Allow from all
+				Options -Indexes
+			</Directory>
+			ErrorLog ${APACHE_LOG_DIR}/error.log
+			LogLevel warn
+			CustomLog ${APACHE_LOG_DIR}/access.log combined
+	</VirtualHost>
+	```
+
+Note: the `Options -Indexes` lines ensure that listings for these directories in the browser has been disabled.
+
+1. Run `sudo a2ensite nuevoMexico` to enable the virtual host
+
 
 
