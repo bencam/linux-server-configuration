@@ -334,4 +334,53 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 	- Add the complete file path for the fb_client_secrets.json file in lines 185 and 187 in the __init__.py file; change it from 'fb_client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/fb_client_secrets.json'
 
 
+### Set up a vitual environment and install dependencies
+1. Start by installing pip (if it isn't installed already) with the following command:
+
+	`sudo apt-get install python-pip`
+
+1. Install virtualenv with apt-get by running `sudo apt-get install python-virtualenv`
+
+1. Change the ownership and group of the project directories and files to the `www-data` user (as it is not considered a good idea for the `root` user to own these); change to the /var/www/ directory and run:
+
+	`sudo chown -R www-data:www-data nuevoMexico/`
+
+1. Add the `ubuntu` user as part of the `www-data` group (make sure to do this while signed in as `ubuntu` and not `www-data`):
+
+	`sudo usermod -a -G www-data ubuntu`
+
+1. Switch to the `www-data` user by running `sudo -s -u www-data`
+
+1. Change to the /var/www/nuevoMexico/nuevoMexico/ directory; choose a name for a temporary environment ('catalog-venv' is used in this example), and create this environment by running `virtualenv catalog-venv` (make sure to NOT use `sudo` here as it can cause problems later on)
+
+1. Switch back to the `ubuntu` user (run `exit`)
+
+1. Activate the new environment, `catalog-venv` by running `. catalog-venv/bin/activate`
+
+1. With the virtual environment active install the following dependenies:
+
+	`sudo pip install httplib2`
+
+	`sudo pip install requests`
+
+	`sudo pip install --upgrade oauth2client`
+
+	`sudo pip install sqlalchemy`
+
+	`sudo pip install Flask-SQLAlchemy`
+
+	`sudo pip install flask`
+
+	`sudo apt-get install libpq-dev` (Note: this will install to the global evironment)
+
+	`sudo pip install psycopg2`
+
+1. In order to make sure everything was installed correctly, run `sudo python __init__.py`; the following (among other things) should be returned
+
+	`* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
+
+1. Deactivate the virtual environment by running `deactivate`
+
+
+
 
