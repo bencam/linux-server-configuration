@@ -389,7 +389,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 	```
 	<VirtualHost *:80>
-			ServerName 184.73.140.177
+			ServerName XX.XX.XX.XX
 			ServerAdmin ben.in.campbell@gmail.com
 			WSGIScriptAlias / /var/www/nuevoMexico/nuevoMexico.wsgi
 			<Directory /var/www/nuevoMexico/nuevoMexico/>
