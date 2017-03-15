@@ -419,20 +419,20 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 1. Add the following to the file:
 
-        ```
-        #!/usr/bin/python
-        import sys
-        import logging
-        logging.basicConfig(stream=sys.stderr)
-        sys.path.insert(0,"/var/www/nuevoMexico/")
+	```
+	#!/usr/bin/python
+	import sys
+	import logging
+	logging.basicConfig(stream=sys.stderr)
+	sys.path.insert(0,"/var/www/nuevoMexico/")
 
-        from nuevoMexico import app as application
-        application.secret_key = '12345'
-        ```
+	from nuevoMexico import app as application
+	application.secret_key = '12345'
+	```
 
 1. Change the ownership of the nuevoMexico.wsgi file to the `www-data` user:
 
-        `sudo chown -R www-data:www-data nuevoMexico.wsgi`
+	`sudo chown -R www-data:www-data nuevoMexico.wsgi`
 
 1. Resart Apache: `sudo service apache2 restart`
 
