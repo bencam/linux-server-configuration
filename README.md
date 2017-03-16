@@ -443,3 +443,17 @@ Replace line 38 in __init__.py, line 70 in database_setup.py, and line 7 in popu
 	`engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')`
 
 
+### Disable the default Apache site
+At some point during the configuration, the default Apache site will likely need to be disabled; to do this, run `sudo a2dissite 000-default.conf`
+
+
+### Set up the database schema and populate the database
+1. While in the /var/www/nuevoMexico/nuevoMexico/ directory, run `sudo python database_setup.py`
+
+1. Then run `sudo python populator.py`
+
+1. Resart Apache again: `sudo service apache2 restart`
+
+1. Now open up a browser and check to make sure the app is working by going to http://184.73.140.177 or http://ec2-184-73-140-177.compute-1.amazonaws.com
+
+
