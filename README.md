@@ -457,3 +457,31 @@ At some point during the configuration, the default Apache site will likely need
 1. Now open up a browser and check to make sure the app is working by going to http://184.73.140.177 or http://ec2-184-73-140-177.compute-1.amazonaws.com
 
 
+## 5. A few helpful commands to know
+Below is a list of commands that could be useful while setting up the server.
+
+`lsb_release -a`
+Find out what version of Ubuntu is running
+
+`whoami`
+Find out which user you are logged in as
+
+`>> import flask`
+`>> flask.__version__`
+Find out which version of Flask is installed (run this within Python)
+
+`sudo service apache2 restart`
+Restart Apache (use this to make sure updates are reflected on the app)
+
+`virtualenv --version`
+Find out which verison of virtualenv is running
+
+`which python`
+Find out where Python has been installed
+(Note: this is especially useful when making sure that the virtualenv is working correctly; when the virtualenv is activated and set up correctly, running `which python` should _not_ return `/usr/bin/python` but rather the file path to the directory where the virtualenv is located)
+
+`vi + /var/log/apache2/error.log`
+View Apache error logs, and open the file starting with the last line
+
+
+
