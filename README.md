@@ -440,7 +440,9 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 ### Switch the database in the application from SQLite to PostgreSQL
 Replace line 38 in __init__.py, line 70 in database_setup.py, and line 7 in populator.py with the following:
 
-	`engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')`
+	```
+	engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')
+	```
 
 
 ### Disable the default Apache site
