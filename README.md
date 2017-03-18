@@ -460,27 +460,27 @@ At some point during the configuration, the default Apache site will likely need
 ## 5. A few helpful commands to know
 Below is a list of commands that could be useful while setting up the server.
 
-`lsb_release -a`
+`lsb_release -a`<br>
 Find out what version of Ubuntu is running
 
-`whoami`
+`whoami`<br>
 Find out which user you are logged in as
 
-`>> import flask`
-`>> flask.__version__`
+`>> import flask`<br>
+`>> flask.__version__`<br>
 Find out which version of Flask is installed (run this within Python)
 
-`sudo service apache2 restart`
+`sudo service apache2 restart`<br>
 Restart Apache (use this to make sure updates are reflected on the app)
 
-`virtualenv --version`
+`virtualenv --version`<br>
 Find out which verison of virtualenv is running
 
-`which python`
-Find out where Python has been installed
+`which python`<br>
+Find out where Python has been installed<br>
 (Note: this is especially useful when making sure that the virtualenv is working correctly; when the virtualenv is activated and set up correctly, running `which python` should _not_ return `/usr/bin/python` but rather the file path to the directory where the virtualenv is located)
 
-`vi + /var/log/apache2/error.log`
+`vi + /var/log/apache2/error.log`<br>
 View Apache error logs, and open the file starting with the last line
 
 
