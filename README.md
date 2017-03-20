@@ -428,6 +428,9 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 1. Add the following to the file:
 
 	```
+	activate_this = '/var/www/nuevoMexico/nuevoMexico/venv/bin/activate_this.py'
+	execfile(activate_this, dict(__file__=activate_this))
+
 	#!/usr/bin/python
 	import sys
 	import logging
