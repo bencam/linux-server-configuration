@@ -275,13 +275,19 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 ### Install git and clone the catalog project
 1. Run `sudo apt-get install git-all`
 
-1. Create a directory called `nuevoMexico` in the /var/www/ directory
+1. Create a directory called 'nuevoMexico' in the /var/www/ directory
 
-1. Change to the `nuevoMexico` directory, and clone the catalog project:
+1. Change to the 'nuevoMexico' directory, and clone the catalog project:
 
 	`sudo git clone https://github.com/bencam/nuevo-mexico.git nuevoMexico`
 
 	Note: the "nuevoMexico" part at the end simply changes the directory name for the repository to 'nuevoMexico' instead of the default 'nuevo-mexico'; this avoids problems later on as Apache does not like hyphens very much
+
+1. Change the ownership of the 'nuevoMexico' directory to `ubuntu` by running (while in /var/www):
+
+	`sudo chown -R ubuntu:ubuntu nuevoMexico/`
+
+1. Change to the /var/www/nuevoMexico/nuevoMexico directory
 
 1. Change the name of the application.py file to __init__.py by running `sudo mv application.py __init__.py`
 
@@ -296,6 +302,8 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 1. Open the database_setup.py file, and change the 'description' column character limit (line 46) from `250` to `850` (some of the place descriptions in the app are relatively long); to be clear, the line should look as follows (after it is changed):
 
 	`description = Column(String(850))`
+
+1. ADD SECTION ON OTHER database_setup.py CHANGES
 
 
 ### Add client_secrets.json and fb_client_secrets.json files
