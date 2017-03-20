@@ -339,7 +339,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 	- Add the Facebook App ID to line 61 of the templates/login.html file in the project directory
 
-	- Add the complete file path for the fb_client_secrets.json file in lines 185 and 187 in the __init__.py file; change it from 'fb_client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/fb_client_secrets.json'
+	- Add the complete file path for the fb_client_secrets.json file in lines 186 and 188 in the __init__.py file; change it from 'fb_client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/fb_client_secrets.json'
 
 
 ### Set up a vitual environment and install dependencies
@@ -423,7 +423,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 
 ### Write a .wsgi file
-1. Apache serves Flask applications by using a .wsgi file; create a file called nuevoMexico.wsgi in /var/www/nuevo-mexico
+1. Apache serves Flask applications by using a .wsgi file; create a file called nuevoMexico.wsgi in /var/www/nuevoMexico
 
 1. Add the following to the file:
 
@@ -438,7 +438,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 	sys.path.insert(0,"/var/www/nuevoMexico/")
 
 	from nuevoMexico import app as application
-	application.secret_key = '12345'
+	application.secret_key = 'INSERT_SECRET_KEY_HERE'
 	```
 
 1. Change the ownership of the nuevoMexico.wsgi file to the `www-data` user:
