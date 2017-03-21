@@ -486,3 +486,18 @@ View Apache error logs, and open the file starting with the last line
 Delete a virtualenv and all of it's directories (be careful; this can't be undone)
 
 
+## 4. Some potentially useful information while configuring the server
+### Rebooting the virtual machine
+When logging in to the virtual machine, the following prompt may appear:
+
+	`*** System restart required ***`
+
+1. To restart the machine, simply run `sudo reboot`
+
+	Note: it is important to keep in mind, that whenever the machine is rebooted, all information in RAM will disappear, the SSH session will end, and the machine will be offline for several minutes.
+
+2. After waiting a few minutes, SSH back into the machine as normal
+
+
+
+
