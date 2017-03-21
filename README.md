@@ -349,45 +349,37 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 1. Install virtualenv with apt-get by running `sudo apt-get install python-virtualenv`
 
-1. Change the ownership and group of the project directories and files to the `www-data` user (as it is not considered a good idea for the `root` user to own these); change to the /var/www/ directory and run:
+1. Change to the /var/www/nuevoMexico/nuevoMexico/ directory; choose a name for a temporary environment ('venv' is used in this example), and create this environment by running `virtualenv venv` (make sure to _not_ use `sudo` here as it can cause problems later on)
 
-	`sudo chown -R www-data:www-data nuevoMexico/`
+1. Activate the new environment, `venv`, by running `. venv/bin/activate`
 
-1. Add the `ubuntu` user as part of the `www-data` group (make sure to do this while signed in as `ubuntu` and not `www-data`):
+1. With the virtual environment active install the following dependenies (note: with the exception of the libpq-dev package, make sure to _not_ use `sudo` for any of the package installations as this will cause the packages to be installed globally rather than within the virtualenv):
 
-	`sudo usermod -a -G www-data ubuntu`
+	`pip install httplib2`
 
-1. Switch to the `www-data` user by running `sudo -s -u www-data`
+	`pip install requests`
 
-1. Change to the /var/www/nuevoMexico/nuevoMexico/ directory; choose a name for a temporary environment ('catalog-venv' is used in this example), and create this environment by running `virtualenv catalog-venv` (make sure to NOT use `sudo` here as it can cause problems later on)
+	`pip install --upgrade oauth2client`
 
-1. Switch back to the `ubuntu` user (run `exit`)
+	`pip install sqlalchemy`
 
-1. Activate the new environment, `catalog-venv` by running `. catalog-venv/bin/activate`
+	`pip install Flask-SQLAlchemy`
 
-1. With the virtual environment active install the following dependenies:
-
-	`sudo pip install httplib2`
-
-	`sudo pip install requests`
-
-	`sudo pip install --upgrade oauth2client`
-
-	`sudo pip install sqlalchemy`
-
-	`sudo pip install Flask-SQLAlchemy`
-
-	`sudo pip install flask`
+	`pip install flask`
 
 	`sudo apt-get install libpq-dev` (Note: this will install to the global evironment)
 
-	`sudo pip install psycopg2`
+	`pip install psycopg2`
 
-1. In order to make sure everything was installed correctly, run `sudo python __init__.py`; the following (among other things) should be returned
+1. In order to make sure everything was installed correctly, run `python __init__.py`; the following (among other things) should be returned
 
 	`* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
 
 1. Deactivate the virtual environment by running `deactivate`
+
+1. Change the ownership of the project directories and files to the `www-data` user (this is done because Apache runs as the `www-data` user); while in the /var/www directory, run:
+
+	`sudo chown -R www-data:www-data nuevoMexico/`
 
 
 ### Set up and enable a virtual host
@@ -438,7 +430,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 	sys.path.insert(0,"/var/www/nuevoMexico/")
 
 	from nuevoMexico import app as application
-	application.secret_key = 'INSERT_SECRET_KEY_HERE'
+	application.secret_key = '12345'
 	```
 
 1. Change the ownership of the nuevoMexico.wsgi file to the `www-data` user:
