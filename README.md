@@ -353,7 +353,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 1. Activate the new environment, `venv`, by running `. venv/bin/activate`
 
-1. With the virtual environment active install the following dependenies (note: with the exception of the libpq-dev package, make sure to _not_ use `sudo` for any of the package installations as this will cause the packages to be installed globally rather than within the virtualenv):
+1. With the virtual environment active, install the following dependenies (note: with the exception of the libpq-dev package, make sure to _not_ use `sudo` for any of the package installations as this will cause the packages to be installed globally rather than within the virtualenv):
 
 	`pip install httplib2`
 
@@ -371,7 +371,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 	`pip install psycopg2`
 
-1. In order to make sure everything was installed correctly, run `python __init__.py`; the following (among other things) should be returned
+1. In order to make sure everything was installed correctly, run `python __init__.py`; the following (among other things) should be returned:
 
 	`* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
 
@@ -433,10 +433,6 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 	application.secret_key = '12345'
 	```
 
-1. Change the ownership of the nuevoMexico.wsgi file to the `www-data` user:
-
-	`sudo chown -R www-data:www-data nuevoMexico.wsgi`
-
 1. Resart Apache: `sudo service apache2 restart`
 
 
@@ -486,5 +482,7 @@ Find out where Python has been installed<br>
 `vi + /var/log/apache2/error.log`<br>
 View Apache error logs, and open the file starting with the last line
 
+`sudo rm -rf INSERT_NAME_OF_VIRTUALENV_HERE`<br>
+Delete a virtualenv and all of it's directories (be careful; this can't be undone)
 
 
