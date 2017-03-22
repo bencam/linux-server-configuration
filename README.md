@@ -499,5 +499,39 @@ When logging in to the virtual machine, the following prompt may appear:
 2. After waiting a few minutes, SSH back into the machine as normal
 
 
+### Fixing `sudo: unable to resolve host ip-XX-XX-XX-XX` error
+1. Open the /etc/hostname file (/etc/hostname contains the name of the machine)
+
+1. Copy the file (it should say nothing more than `ip-10-20-29-203`, for example)
+
+1. Paste this into the first line of the /etc/hosts file, and add the following before it:
+
+	'localhost.localdomain'
+
+	To be clear: the first line of the file should look like something this:
+
+	`127.0.0.1 localhost localhost.localdomain ip-10-20-29-203`)
+
+1. Run `sudo hostname` to make sure it worked; if it worked, something such as `ip-10-20-29-203` will be returned
+
+
+### Fixing a servername error with Apache
+When installing Apache, the following error may appear:
+
+	```
+	AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.0.1. Set the 'ServerName' directive globally to suppress this message
+	```
+
+1. To fix this, open up the /etc/apache2/apache2.conf file
+
+1. Add in the following line at the end of the file:
+
+	`ServerName localhost`
+
+1. Restart Apache by running `sudo service apache2 restart`
+
+1. If it did not work, the same error message will appear when restarting Apache
+
+Note: this change will be overwritten when Apache is updated.
 
 
