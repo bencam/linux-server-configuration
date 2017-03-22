@@ -506,7 +506,7 @@ When logging in to the virtual machine, the following prompt may appear:
 
 1. Paste this into the first line of the /etc/hosts file, and add the following before it:
 
-	'localhost.localdomain'
+	`localhost.localdomain`
 
 	To be clear: the first line of the file should look like something this:
 
@@ -518,9 +518,7 @@ When logging in to the virtual machine, the following prompt may appear:
 ### Fixing a servername error with Apache
 When installing Apache, the following error may appear:
 
-	```
 	AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.0.1. Set the 'ServerName' directive globally to suppress this message
-	```
 
 1. To fix this, open up the /etc/apache2/apache2.conf file
 
