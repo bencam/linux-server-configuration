@@ -212,12 +212,10 @@ Run `sudo dpkg-reconfigure tzdata`, and follow the instructions (UTC is under th
 ### Make sure Python is installed
 Python should already be installed on a machine running Ubuntu 16.04. To verify, simply run `python`. Something like the following should appear:
 
-	```
 	Python 2.7.6 (default, Oct 26 2016, 20:30:19) 
 	[GCC 4.8.4] on linux2
 	Type "help", "copyright", "credits" or "license" for more information.
 	>>>
-	```
 
 ### Create a new PostgreSQL user named `catalog` with limited permissions
 1. PostgreSQL creates a Linux user with the name `postgres` during installation; switch to this user by running `sudo su - postgres` (for security reasons, it is important to only use the `postgres` user for accessing the PostgreSQL software)
@@ -490,7 +488,7 @@ Delete a virtualenv and all of it's directories (be careful; this can't be undon
 ### Rebooting the virtual machine
 When logging in to the virtual machine, the following prompt may appear:
 
-	`*** System restart required ***`
+	*** System restart required ***
 
 1. To restart the machine, simply run `sudo reboot`
 
@@ -531,5 +529,36 @@ When installing Apache, the following error may appear:
 1. If it did not work, the same error message will appear when restarting Apache
 
 Note: this change will be overwritten when Apache is updated.
+
+
+## 6. Sources
+Below is a list of sources I used to complete this project.
+
+Udacity course: [Configuring Linux Web Servers](https://www.udacity.com/course/configuring-linux-web-servers--ud299)
+
+Udacity course: [Linux Command Line Basics](https://www.udacity.com/course/linux-command-line-basics--ud595)
+
+Digital Ocean tutorial: [How To Deploy a Flask Application on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
+
+Digital Ocean tutorial: [How To Use Roles and Manage Grant Permissions in PostgreSQL on a VPS](https://www.digitalocean.com/community/tutorials/how-to-use-roles-and-manage-grant-permissions-in-postgresql-on-a-vps--2)
+
+Kill the Yak [tutorial](http://killtheyak.com/use-postgresql-with-django-flask/) for using PostgreSQL with Flask or Django
+
+The Hitchhiker’s Guide to Python [guide](http://docs.python-guide.org/en/latest/dev/virtualenvs/) on virtualenv
+
+Flask [documentation](http://flask.pocoo.org/docs/0.12/installation/) on virtualenv
+
+tutorialspoint [tutorial](https://www.tutorialspoint.com/postgresql/postgresql_create_database.htm) on creating a database with PostgreSQL
+
+Digital Ocean tutorial: [An Introduction to Linux Permissions](https://www.digitalocean.com/community/tutorials/an-introduction-to-linux-permissions)
+
+tutorialspoint [tutorial](https://www.tutorialspoint.com/postgresql/postgresql_drop_database.htm) on how to drop a PostgeSQL database
+
+SQLAlchemy [documentation](http://docs.sqlalchemy.org/en/latest/orm/cascades.html) on cascade delete
+
+SQLAlchemy [documentation](http://docs.sqlalchemy.org/en/rel_1_0/orm/basic_relationships.html) on one-to-many relationships
+
+Flask [documenation](http://flask.pocoo.org/docs/0.12/deploying/mod_wsgi/#working-with-virtual-environments) on making a virtualenv work with mod_wsgi
+
 
 
