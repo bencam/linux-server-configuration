@@ -287,9 +287,9 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 1. Change to the /var/www/nuevoMexico/nuevoMexico directory
 
-1. Change the name of the application.py file to __init__.py by running `sudo mv application.py __init__.py`
+1. Change the name of the application.py file to \__init__.py by running `sudo mv application.py __init__.py`
 
-1. In __init__.py, find line 508:
+1. In \__init__.py, find line 508:
 
 	`app.run(host='0.0.0.0', port=8000)`
 
@@ -319,7 +319,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 	- Add the client ID to line 16 of the templates/login.html file in the project directory
 
-	- Add the complete file path for the client_secrets.json file in lines 33 and 63 in the __init__.py file; change it from 'client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/client_secrets.json'
+	- Add the complete file path for the client_secrets.json file in lines 33 and 63 in the \__init__.py file; change it from 'client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/client_secrets.json'
 
 1. Authenitcate login through Facebook:
 
@@ -337,7 +337,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 	- Add the Facebook App ID to line 61 of the templates/login.html file in the project directory
 
-	- Add the complete file path for the fb_client_secrets.json file in lines 186 and 188 in the __init__.py file; change it from 'fb_client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/fb_client_secrets.json'
+	- Add the complete file path for the fb_client_secrets.json file in lines 186 and 188 in the \__init__.py file; change it from 'fb_client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/fb_client_secrets.json'
 
 
 ### Set up a vitual environment and install dependencies
@@ -431,7 +431,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 
 ### Switch the database in the application from SQLite to PostgreSQL
-Replace line 38 in __init__.py, line 70 in database_setup.py, and line 7 in populator.py with the following:
+Replace line 38 in \__init__.py, line 70 in database_setup.py, and line 7 in populator.py with the following:
 
 	engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')
 
