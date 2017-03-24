@@ -44,7 +44,7 @@ The URL to the hosted webpage is simply the public IP address: ADD.
 
 
 ### Connect to the instance on a local machine
-Note: While Amazon Lightsail provides a broswer-based connection method, this will no longer work once the SSH port is changed (see below). The following steps outline how to connect to the instance via the Terminal program on Mac OS machines (this can also be done on a Windows machine with a program such as PuTTY).
+Note: While Amazon Lightsail provides a broswer-based connection method, this will no longer work once the SSH port is changed (see below). The following steps outline how to connect to the instance via the Terminal program on Mac OS machines (this can also be done on a Windows machine with a program such as [PuTTY](http://www.putty.org)).
 
 1. Download the instance's private key by navigating to the Amazon Lightsail 'Account page'
 
@@ -287,9 +287,9 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 1. Change to the /var/www/nuevoMexico/nuevoMexico directory
 
-1. Change the name of the application.py file to \__init__.py by running `sudo mv application.py __init__.py`
+1. Change the name of the application.py file to \_\_init__.py by running `sudo mv application.py __init__.py`
 
-1. In \__init__.py, find line 508:
+1. In \_\_init__.py, find line 508:
 
 	`app.run(host='0.0.0.0', port=8000)`
 
@@ -319,7 +319,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 	- Add the client ID to line 16 of the templates/login.html file in the project directory
 
-	- Add the complete file path for the client_secrets.json file in lines 33 and 63 in the \__init__.py file; change it from 'client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/client_secrets.json'
+	- Add the complete file path for the client_secrets.json file in lines 33 and 63 in the \_\_init__.py file; change it from 'client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/client_secrets.json'
 
 1. Authenitcate login through Facebook:
 
@@ -337,7 +337,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 	- Add the Facebook App ID to line 61 of the templates/login.html file in the project directory
 
-	- Add the complete file path for the fb_client_secrets.json file in lines 186 and 188 in the \__init__.py file; change it from 'fb_client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/fb_client_secrets.json'
+	- Add the complete file path for the fb_client_secrets.json file in lines 186 and 188 in the \_\_init__.py file; change it from 'fb_client_secrets.json' to '/var/www/nuevoMexico/nuevoMexico/fb_client_secrets.json'
 
 
 ### Set up a vitual environment and install dependencies
@@ -360,8 +360,6 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 	`pip install --upgrade oauth2client`
 
 	`pip install sqlalchemy`
-
-	`pip install Flask-SQLAlchemy`
 
 	`pip install flask`
 
@@ -431,7 +429,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 
 ### Switch the database in the application from SQLite to PostgreSQL
-Replace line 38 in \__init__.py, line 70 in database_setup.py, and line 7 in populator.py with the following:
+Replace line 38 in \_\_init__.py, line 70 in database_setup.py, and line 7 in populator.py with the following:
 
 	engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')
 
@@ -447,13 +445,15 @@ Change the ownership of the project directories and files to the `www-data` user
 
 
 ### Set up the database schema and populate the database
-1. While in the /var/www/nuevoMexico/nuevoMexico/ directory, run `sudo python database_setup.py`
+1. While in the /var/www/nuevoMexico/nuevoMexico/ directory, activate the virtualenv by running `. venv/bin/activate`
 
-1. Then run `sudo python populator.py`
+1. Run `python database_setup.py`
+
+1. Then run `python populator.py`
 
 1. Resart Apache again: `sudo service apache2 restart`
 
-1. Now open up a browser and check to make sure the app is working by going to http://184.73.140.177 or http://ec2-184-73-140-177.compute-1.amazonaws.com
+1. Now open up a browser and check to make sure the app is working by going to http://XX.XX.XX.XX or http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com
 
 
 ## 5. A few helpful commands to know
