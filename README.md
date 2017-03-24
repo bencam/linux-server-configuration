@@ -271,7 +271,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 
 ### Install git and clone the catalog project
-1. Run `sudo apt-get install git-all`
+1. Run `sudo apt-get install git`
 
 1. Create a directory called 'nuevoMexico' in the /var/www/ directory
 
