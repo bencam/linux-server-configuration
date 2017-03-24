@@ -160,7 +160,7 @@ Note: As mentioned above, connecting to the instance through a browser now no lo
 
 1. Run `touch .ssh/authorized_keys`
 
-1. On the local machine, run 'cat ~/.ssh/insert-name-of-file.pub`
+1. On the local machine, run `cat ~/.ssh/insert-name-of-file.pub`
 
 1. Copy the contents of the file, and paste them in the .ssh/authorized_keys file on the virtual machine
 
@@ -443,7 +443,7 @@ At some point during the configuration, the default Apache site will likely need
 ### Change the ownership of the project direcotries
 Change the ownership of the project directories and files to the `www-data` user (this is done because Apache runs as the `www-data` user); while in the /var/www directory, run:
 
-	`sudo chown -R www-data:www-data nuevoMexico/`
+	sudo chown -R www-data:www-data nuevoMexico/
 
 
 ### Set up the database schema and populate the database
