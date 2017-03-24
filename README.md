@@ -375,10 +375,6 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 1. Deactivate the virtual environment by running `deactivate`
 
-1. Change the ownership of the project directories and files to the `www-data` user (this is done because Apache runs as the `www-data` user); while in the /var/www directory, run:
-
-	`sudo chown -R www-data:www-data nuevoMexico/`
-
 
 ### Set up and enable a virtual host
 1. Create a file in /etc/apache2/sites-available/ called nuevoMexico.conf
@@ -442,6 +438,12 @@ Replace line 38 in __init__.py, line 70 in database_setup.py, and line 7 in popu
 
 ### Disable the default Apache site
 At some point during the configuration, the default Apache site will likely need to be disabled; to do this, run `sudo a2dissite 000-default.conf`
+
+
+### Change the ownership of the project direcotries
+Change the ownership of the project directories and files to the `www-data` user (this is done because Apache runs as the `www-data` user); while in the /var/www directory, run:
+
+	`sudo chown -R www-data:www-data nuevoMexico/`
 
 
 ### Set up the database schema and populate the database
