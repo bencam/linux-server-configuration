@@ -101,7 +101,7 @@ Note: While Amazon Lightsail provides a broswer-based connection method, this wi
 	123/udp (v6)               ALLOW       Anywhere (v6)
 	```
 
-1. Update the external (Amazon Lightsail) firewall on the browser by clicking on the 'Networking' tab and changing the firewall configuration to match the internal firewall settings above (only ports `80`, `123`, and `2200` should be allowed; make sure to deny the default port `22`)
+1. Update the external (Amazon Lightsail) firewall on the browser by clicking on the 'Manage' option, then the 'Networking' tab, and then changing the firewall configuration to match the internal firewall settings above (only ports `80`(TCP), `123`(UDP), and `2200`(TCP) should be allowed; make sure to deny the default port `22`)
 
 1. Now, to login (on a Mac), open up the Terminal and run:
 
@@ -121,7 +121,7 @@ Note: As mentioned above, connecting to the instance through a browser now no lo
 
 
 ### Give `grader` user sudo permissions
-1. Run `visudo`
+1. Run `sudo visudo`
 
 1. Search for a line that looks like this:
 
@@ -178,7 +178,9 @@ Note that a pop-up window will ask for `grader`'s password.
 
 
 ### Configure the local timezone to UTC
-Run `sudo dpkg-reconfigure tzdata`, and follow the instructions (UTC is under the 'None of the above' category)
+1. Run `sudo dpkg-reconfigure tzdata`, and follow the instructions (UTC is under the 'None of the above' category)
+
+1. Test to make sure the timezone is configured correctly by running`date`
 
 
 ### Install and configure Apache
@@ -190,7 +192,7 @@ Run `sudo dpkg-reconfigure tzdata`, and follow the instructions (UTC is under th
 ### Install mod_wsgi
 1. Install the mod_wsgi package (which is a tool that allows Apache to serve Flask applications) along with python-dev (a package with header files required when building Python extensions); use the following command:
 
-`sudo apt-get install libapache2-mod-wsgi python-dev`
+	`sudo apt-get install libapache2-mod-wsgi python-dev`
 
 1. Make sure mod_wsgi is enabled by running `sudo a2enmod wsgi`
 
@@ -212,10 +214,10 @@ Run `sudo dpkg-reconfigure tzdata`, and follow the instructions (UTC is under th
 ### Make sure Python is installed
 Python should already be installed on a machine running Ubuntu 16.04. To verify, simply run `python`. Something like the following should appear:
 
-	Python 2.7.6 (default, Oct 26 2016, 20:30:19) 
-	[GCC 4.8.4] on linux2
+	Python 2.7.12 (default, Nov 19 2016, 06:48:10) 
+	[GCC 5.4.0 20160609] on linux2
 	Type "help", "copyright", "credits" or "license" for more information.
-	>>>
+	>>> 
 
 ### Create a new PostgreSQL user named `catalog` with limited permissions
 1. PostgreSQL creates a Linux user with the name `postgres` during installation; switch to this user by running `sudo su - postgres` (for security reasons, it is important to only use the `postgres` user for accessing the PostgreSQL software)
@@ -243,7 +245,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 1. Switch back to the `ubuntu` user by running `exit`
 
 
-### Create a Linux user called catalog and a new PostgreSQL database
+### Create a Linux user called `catalog` and a new PostgreSQL database
 1. Create a new Linux user called `catalog`:
 
 	- run `sudo adduser catalog`
@@ -252,7 +254,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 1. Give the `catalog` user sudo permissions:
     
-	- run `visudo`
+	- run `sudo visudo`
 	- search for a line that looks like this: `root    ALL=(ALL:ALL) ALL`
 	- add the following line below this one: `catalog    ALL=(ALL:ALL) ALL`
 	- save and close the visudo file
@@ -268,6 +270,8 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 1. While logged in as `catalog`, create a database called catalog by running `createdb catalog`
 
 1. Run `psql` and then run `\l` to see that the new database has been created
+
+1. Switch back to the `ubuntu` user by running `exit`
 
 
 ### Install git and clone the catalog project
@@ -287,7 +291,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 1. Change to the /var/www/nuevoMexico/nuevoMexico directory
 
-1. Change the name of the application.py file to \_\_init__.py by running `sudo mv application.py __init__.py`
+1. Change the name of the application.py file to \_\_init__.py by running `mv application.py __init__.py`
 
 1. In \_\_init__.py, find line 508:
 
@@ -313,7 +317,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 	- Add http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/login, http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/gconnect, and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/oauth2callback as authorized redirect URIs
 
-	- Create a file called client_secrets.json file in the /var/www/nuevoMexico/nuevoMexico/ directory 
+	- Create a file called client_secrets.json in the /var/www/nuevoMexico/nuevoMexico/ directory 
 
 	- Google will provide a client ID and client secret for the project; download the JSON file, and copy and paste the contents into the client_secrets.json file
 
@@ -401,9 +405,19 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 	</VirtualHost>
 	```
 
-	Note: the `Options -Indexes` lines ensure that listings for these directories in the browser has been disabled.
+	Note: the `Options -Indexes` lines ensure that listings for these directories in the browser is disabled.
 
 1. Run `sudo a2ensite nuevoMexico` to enable the virtual host
+
+	The following prompt will be returned:
+
+	```
+	Enabling site nuevoMexico.	
+	To activate the new configuration, you need to run:
+	  service apache2 reload
+	```
+
+1. Run `sudo service apache2 reload`
 
 
 ### Write a .wsgi file
@@ -435,7 +449,17 @@ Replace line 38 in \_\_init__.py, line 70 in database_setup.py, and line 7 in po
 
 
 ### Disable the default Apache site
-At some point during the configuration, the default Apache site will likely need to be disabled; to do this, run `sudo a2dissite 000-default.conf`
+1. At some point during the configuration, the default Apache site will likely need to be disabled; to do this, run `sudo a2dissite 000-default.conf`
+
+	The following prompt will be returned:
+
+	```
+	Site 000-default disabled.
+	To activate the new configuration, you need to run:
+	  service apache2 reload
+	```
+
+1. Run `sudo service apache2 reload`  
 
 
 ### Change the ownership of the project direcotries
@@ -566,6 +590,6 @@ Flask [documenation](http://flask.pocoo.org/docs/0.12/deploying/mod_wsgi/#workin
 
 Udacity forum posts: [firewall configuration](https://discussions.udacity.com/t/how-is-fail2ban-related-to-ufw/47638/2), logging in as [grader](https://discussions.udacity.com/t/how-to-login-to-my-aws-virtual-server-as-new-user-grader/201164/22), PostgreSQL [roles](https://discussions.udacity.com/t/postgressql-cant-alter-role-with-created-cant-create-db-at-all/198350), more on PostgreSQL [roles](https://discussions.udacity.com/t/step-10-catalog-user/157413/2), switching from SQLite to [PostgreSQL](https://discussions.udacity.com/t/how-to-move-a-flask-app-from-using-a-sqlite3-db-to-postgresql/7004/5), more on switching from SQLite to [PostgreSQL](https://discussions.udacity.com/t/sample-flask-app-500-server-error-digital-ocean-tutorial/204312/4), virtualenv [packages](https://discussions.udacity.com/t/importerror-no-module-named-psycopg2-project5/35018/2), Apache [errors](https://discussions.udacity.com/t/running-apache-problem/35719/3), [disabling](https://discussions.udacity.com/t/solved-getting-both-ip-and-amazon-ec2s-public-url-to-point-at-app/40166) the default Apache site, more on switching from SQLite to [PostgreSQL](https://discussions.udacity.com/t/completed-the-setup-and-refreshed-server-link-but-got-error/215946/19), Amazon Lightsail [URL](https://discussions.udacity.com/t/localhost-url-for-amazon-lightsail-instance/223409/3), [firewall](https://discussions.udacity.com/t/configuring-the-firewall-for-amazon-lightsail/222208/4) configuration, [virtualenv](https://discussions.udacity.com/t/installing-virtualenv/224005), [reloading](https://discussions.udacity.com/t/solved-replacing-hello-world-with-query-data-error-500-internal-server-error/215034) PostgreSQL, [populating](https://discussions.udacity.com/t/how-to-access-index-html-in-browser/157272/7) the PostgreSQL database, [create_engine](https://discussions.udacity.com/t/psycopg2-operationalerror-postgresql-error/202640) line for PostgreSQL, [client_secrets.json](https://discussions.udacity.com/t/apache-cant-find-file-in-main-directory/24498/6) error, more on [populating](https://discussions.udacity.com/t/error-with-populating-the-database/225616) the PostgreSQL database, [preventing](https://discussions.udacity.com/t/list-of-items-in-the-directory-instead-of-displaying-site/35423) the .git directory from being accessible in the browser, [more](https://discussions.udacity.com/t/disabling-directory-listings/226155) on the .git directory, Google login [issues](https://discussions.udacity.com/t/oauth-redirect-url/159158), alternate Amazon Lightsail [URL](https://discussions.udacity.com/t/project-update-amazon-lightsail-is-now-the-recommended-platform/221495/5), cascade [delete](https://discussions.udacity.com/t/cascading-delete-from-restaurant-to-its-menu-items/15066), more on cascade [delete](https://discussions.udacity.com/t/sqlite-relations-and-delete-cascade/24691/7), virtualenv and mod_wsgi and SQLAlchemy [errors](https://discussions.udacity.com/t/parent-deleted-when-child-is-deleted/229837/7)
 
-Stack Overflow and related question-and-answer posts: ADD
+Stack Overflow and related question-and-answer posts: unable to resolve host [error](http://askubuntu.com/questions/59458/error-message-when-i-run-sudo-unable-to-resolve-host-none), system restart required [issue](http://askubuntu.com/questions/258297/should-i-always-restart-the-system-when-i-see-system-restart-required), servername [error](http://askubuntu.com/questions/329323/problem-with-restarting-apache-2) with Apache, which version of [Flask](http://stackoverflow.com/questions/5285858/determining-what-version-of-flask-is-installed), installing psycopg2 by installing [libpq-dev](http://stackoverflow.com/questions/5629368/installing-psycopg2-into-virtualenv-when-postgresql-is-not-installed-on-developm), ... 
 
 
