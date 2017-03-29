@@ -516,7 +516,7 @@ Delete a virtualenv and all of it's directories (be careful; this can't be undon
 `dropdb INSERT_NAME_OF_DATABASE`<br>
 Drop (delete) a PostgreSQL database; this is helpful if changes are made to the database_setup.py file; the current database should always be dropped and a new one created (run this command while logged in as the `catalog` user)
 
-`sudo apachectl stop` and `sudo apachectl start'
+`sudo apachectl stop` and `sudo apachectl start`<br>
 Stop and start Apache; stopping Apache breaks the database session, which makes it possible to drop a database
 
 
