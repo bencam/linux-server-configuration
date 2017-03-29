@@ -530,7 +530,16 @@ When logging in to the virtual machine, the following prompt may appear:
 
 	Note: it is important to keep in mind, that whenever the machine is rebooted, all information in RAM will disappear, the SSH session will end, and the machine will be offline for several minutes.
 
-2. After waiting a few minutes, SSH back into the machine as normal
+1. After waiting a few minutes, SSH back into the machine as normal
+
+
+### Setting up SQLAlchemy logging
+At some point in the configuration, viewing logged SQLAlchemy information and errors may be userful. To do this, simply add the following into the imports section of the \_\_init__.py file:
+
+	import logging
+	logging.basicConfig()
+	logging.getLogger('sqlalchemy.engine').setLevel(logging.DEBUG)
+
 
 
 ### Fixing `sudo: unable to resolve host ip-XX-XX-XX-XX` error
