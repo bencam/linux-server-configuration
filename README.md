@@ -5,11 +5,11 @@ The instructions are written specifically for hosting an app called [Nuevo M&eac
 
 
 ## 1. Details specific to the server I set up
-The IP address is ADD.
+The IP address is 34.207.77.81.
 
-The SSH port used is `ADD`.
+The SSH port used is `2200`.
 
-The URL to the hosted webpage is simply the public IP address: ADD.
+The URL to the hosted webpage is: http://34.207.77.81/ or http://ec2-34-207-77-81.compute-1.amazonaws.com/.
 
 
 ## 2. Software to install during the configuration
