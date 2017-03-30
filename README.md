@@ -540,6 +540,7 @@ At some point in the configuration, viewing logged SQLAlchemy information and er
 	logging.basicConfig()
 	logging.getLogger('sqlalchemy.engine').setLevel(logging.DEBUG)
 
+The SQLAlchemy logs will be added to the /var/log/apache2/error.log file.
 
 
 ### Fixing `sudo: unable to resolve host ip-XX-XX-XX-XX` error
