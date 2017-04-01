@@ -475,9 +475,9 @@ Note: if changes need to be made to the project files after the ownership of the
 ### Set up the database schema and populate the database
 1. While in the /var/www/nuevoMexico/nuevoMexico/ directory, activate the virtualenv by running `. venv/bin/activate`
 
-1. Run `python database_setup.py`
-
 1. Then run `python populator.py`
+
+1. Deactivate the virtualenv (run `deactivate`)
 
 1. Resart Apache again: `sudo service apache2 restart`
 
