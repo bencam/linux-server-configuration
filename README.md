@@ -301,11 +301,13 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 	`app.run()`
 
-1. Open the database_setup.py file, and change the 'description' column character limit (line 46) from `250` to `850` (some of the place descriptions in the app are relatively long); to be clear, the line should look as follows (after it is changed):
+1. Delete, rename, or move the database_setup.py file to another directory
 
-	`description = Column(String(850))`
+1. Rename the database_setup_postgres.py file to database_setup.py
 
-1. ADD SECTION ON OTHER database_setup.py CHANGES
+	Note: the default database for the neuvo-mexico application is SQLite. The original database_setup.py file in the repository is configured for a SQLite database, and the database_setup_postgres.py file is configured for PostgreSQL (only one change must be made to the file; see the "Switch the database in the application from SQLite to PostgreSQL" section below).
+
+	The name of the database_setup_postgres.py file is changed to database_setup.py in order to reflect the database_setup import statements in the \_\_init__.py and populator.py files.
 
 
 ### Add client_secrets.json and fb_client_secrets.json files
@@ -443,7 +445,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 
 ### Switch the database in the application from SQLite to PostgreSQL
-Replace line 38 in \_\_init__.py, line 70 in database_setup.py, and line 7 in populator.py with the following:
+Replace line 38 in \_\_init__.py, line 71 in database_setup.py, and line 7 in populator.py with the following:
 
 	engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')
 
