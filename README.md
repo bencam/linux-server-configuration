@@ -313,7 +313,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 ### Add client_secrets.json and fb_client_secrets.json files
 1. Authenticate login through Google:
 
-	- Create a new project on the [Google API Console](console.developers.google.com)
+	- Create a new project on the Google API Console
 
 	- Create an OAuth Client ID (under the Credentials tab), and make sure to add http://XX.XX.XX.XX and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com as authorized JavaScript origins
 
@@ -331,7 +331,7 @@ Python should already be installed on a machine running Ubuntu 16.04. To verify,
 
 	- Create a new app at [Facebook for Developers](https://developers.facebook.com)
 
-	- Make http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/ the site URL
+	- Make http://XX.XX.XX.XX/ the site URL
 
 	- Add the 'Facebook Login' product, and put http://XX.XX.XX.XX/ and http://ec2-XX-XX-XX-XX.compute-1.amazonaws.com/ as the Valid OAuth redirect URIs
 
