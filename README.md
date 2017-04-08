@@ -535,6 +535,28 @@ When logging in to the virtual machine, the following prompt may appear:
 1. After waiting a few minutes, SSH back into the machine as normal
 
 
+### Dropping and recreating a database
+At some point in the configuration, it may be necessary to drop the catalog database and recreate it. Here is one way to do that:
+
+1. Stop Apache by running `sudo apachectl stop`
+
+1. Switch to the `postgres` user and enter psql: `sudo -u postgres psql`
+
+1. Drop the current database (which is presumably called 'catalog'): `drop database catalog;`
+
+1. Recreate the database: `create database catalog owner catalog;`
+
+1. Exit PostgreSQL and psql (run `exit`)
+
+1. Activate the virtual environmen: `. venv/bin/activate`
+
+1. Run `python populator.py`
+
+1. Deactivate the virtual environment (`deactivate`)
+
+1. Start Apache: `sudo apachectl start`
+
+
 ### Setting up SQLAlchemy logging
 At some point in the configuration, viewing logged SQLAlchemy information and errors may be userful. To do this, simply add the following into the imports section of the \_\_init__.py file:
 
