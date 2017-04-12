@@ -473,6 +473,8 @@ Note: if changes need to be made to the project files after the ownership of the
 
 	sudo -u www-data vim INSERT_NAME_OF_FILE
 
+(Note: vim can be replaced here with nano or another text editor.)
+
 
 ### Set up the database schema and populate the database
 1. While in the /var/www/nuevoMexico/nuevoMexico/ directory, activate the virtualenv by running `. venv/bin/activate`
@@ -510,7 +512,7 @@ Find out where Python has been installed<br>
 (Note: this is especially useful when making sure that the virtualenv is working correctly; when the virtualenv is activated and set up correctly, running `which python` should _not_ return `/usr/bin/python` but rather the file path to the directory where the virtualenv is located)
 
 `vi + /var/log/apache2/error.log`<br>
-View Apache error logs, and open the file starting with the last line
+View Apache error logs, and open the file starting with the last line (note: vi can be replaced here with nano or another text editor)
 
 `sudo rm -rf INSERT_NAME_OF_VIRTUALENV_HERE`<br>
 Delete a virtualenv and all of it's directories (be careful; this can't be undone)
