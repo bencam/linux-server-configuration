@@ -50,7 +50,7 @@ Note: While Amazon Lightsail provides a broswer-based connection method, this wi
 
 1. Click on 'Download default key'
 
-1. A file called LightsailDefaultPrivateKey.pem will be downloaded; open this in a text editor
+1. A file called LightsailDefaultPrivateKey.pem or LightsailDefaultPrivateKey-YOUR-AWS-REGION.pem will be downloaded; open this in a text editor
 
 1. Copy the text and put it in a file called lightrail_key.rsa in the local ~/.ssh/ directory
 
